@@ -61,6 +61,12 @@ class Guard
     public function getDefaultName($class): string
     {
         $default = config('auth.defaults.guard');
-        return $this->getNames($class)->first() ?: $default;
+        $names = $this->getNames($class);
+
+        if ($default && $names->contains($default)) {
+            return $default;
+        }
+
+        return $names->first() ?: $default;
     }
 }
