@@ -2,7 +2,7 @@
 
 namespace Maklad\Permission\Contracts;
 
-use Jenssegers\Mongodb\Relations\BelongsToMany;
+use MongoDB\Laravel\Relations\BelongsToMany;
 use Maklad\Permission\Exceptions\PermissionDoesNotExist;
 
 /**
