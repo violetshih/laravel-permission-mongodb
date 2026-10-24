@@ -29,13 +29,13 @@
             "role": "The original module"
         }
     ],
-    "version": "4.3.0",
+    "version": "4.4.0",
     "require": {
-        "php": "^8.2",
-        "illuminate/auth": "^12.0",
-        "illuminate/container": "^12.0",
-        "illuminate/contracts": "^12.0",
-        "mongodb/laravel-mongodb": "^5.2"
+        "php": "^8.3",
+        "illuminate/auth": "^13.0",
+        "illuminate/container": "^13.0",
+        "illuminate/contracts": "^13.0",
+        "mongodb/laravel-mongodb": "^5.11"
     },
     "require-dev": {
         "monolog/monolog": "^2.3",
