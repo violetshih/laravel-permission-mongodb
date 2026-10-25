@@ -67,7 +67,12 @@ class Permission extends Model implements PermissionInterface
             throw new PermissionAlreadyExists($helpers->getPermissionAlreadyExistsMessage($name, $guardName));
         }
 
-        return $helpers->checkVersion() ? parent::create($attributes) : static::query()->create($attributes);
+        // 不可呼叫 parent::create() / static::create()：Laravel 11+ 會經 __callStatic
+        // 再進到這個覆寫的 create 造成無限遞迴
+        $permission = new static($attributes);
+        $permission->save();
+
+        return $permission;
     }
 
     /**

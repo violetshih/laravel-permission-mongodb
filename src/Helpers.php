@@ -126,11 +126,16 @@ class Helpers
     }
 
     /**
-     * @return bool
+     * Whether the app is older than Laravel 5.4 (legacy create path).
+     * Always false on Laravel 13; kept for call-site compatibility.
      */
     public function checkVersion(): bool
     {
-        return ($this->isNotLumen() && app()::VERSION < '5.4');
+        if (! $this->isNotLumen()) {
+            return false;
+        }
+
+        return version_compare(app()->version(), '5.4', '<');
     }
 
     /**

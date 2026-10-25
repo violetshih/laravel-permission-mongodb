@@ -65,7 +65,12 @@ class Role extends Model implements RoleInterface
             throw new RoleAlreadyExists($helpers->getRoleAlreadyExistsMessage($name, $guardName));
         }
 
-        return $helpers->checkVersion() ? parent::create($attributes) : static::query()->create($attributes);
+        // 不可呼叫 parent::create() / static::create()：Laravel 11+ 會經 __callStatic
+        // 再進到這個覆寫的 create 造成無限遞迴
+        $role = new static($attributes);
+        $role->save();
+
+        return $role;
     }
 
     /**
